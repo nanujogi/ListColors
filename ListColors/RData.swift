@@ -16,6 +16,7 @@ class RData: BindableObject {
     var didChange = PassthroughSubject<Void, Never>()
     
     var models:[Restaurant] = []
+    
     var searchName = [Restaurant]()  {
         didSet {
             DispatchQueue.main.async {
@@ -40,12 +41,18 @@ class RData: BindableObject {
     }
     
     func FilterWords(words: String)  {
+        print("Words is \(words)")
         if words == "" {
             searchName = models
         } else {
-            searchName = models.isEmpty ? models : models.filter({ (value) -> Bool in
+            searchName = models.filter({ (value) -> Bool in
                 value.name.range(of: words, options: .caseInsensitive) != nil
             })
+            
+            
+//            searchName = models.isEmpty ? models : models.filter({ (value) -> Bool in
+//                value.name.range(of: words, options: .caseInsensitive) != nil
+//            })
             print(searchName)
         }
     }

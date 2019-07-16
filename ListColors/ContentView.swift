@@ -9,13 +9,36 @@ import Combine
 struct ContentView: View {
     
     @ObjectBinding var store: RData
-//    @Binding var strnames: String
+    //    @Binding var strnames: String
+    
+    @State var searchText: String = ""
+    
+    var dismissButtonTitle = "Cancel"
+    var dismissButtonCallback: (() -> Void)?
     
     var body: some View {
-         Group {
+        Group {
             NavigationView {
                 VStack {
-                    SearchField()
+                    // SearchField()
+                    HStack{
+                        Image(systemName: "magnifyingglass")
+                            .padding(.leading)
+                        TextField("Search ....", text: $searchText )
+                            .textFieldStyle(.roundedBorder)
+                            .padding(.leading)
+                            .padding(.trailing)
+                        
+                        if !searchText.isEmpty {
+                            Button(action: {
+                                self.searchText = ""
+                                self.dismissButtonCallback?()
+                            }, label: {
+                                Text("Cancel").color(.gray)
+                            }).animation(.basic())
+                        }
+                        
+                    }.padding(4) // end of HStack
                     
                     List {
                         ForEach(store.searchName) { data in
@@ -31,14 +54,16 @@ struct ContentView: View {
             
         }  // end of group
             .onAppear(perform: {
-//                self.store.FilterWords(words: "joe") })
+//                self.searchName()})
+                
+//                self.store.FilterWords(words: "\(self.$searchText)") })
                 self.store.getData() })
     }
     
     func searchName() {
-        // strnames = SearchField().searchText
-//        print(SearchField().$searchText)
-//        print(store.FilterWords(words: SearchField().searchText))
-        print("srcText")
+        let strnames = $searchText
+        print(strnames.value)
+        store.FilterWords(words: "\(strnames.value)")
+
     }
 }
