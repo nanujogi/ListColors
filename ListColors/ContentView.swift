@@ -24,8 +24,10 @@ struct ContentView: View {
                         }
                     }
                 } // end of VStack
+                    
                     .navigationBarTitle(Text("Restaurants"))
                     .navigationBarItems(trailing: Button(action: searchName, label: { Text("Search") }))
+                
             } // end of NavigationView
         }  // end of group
             .onAppear(perform: {

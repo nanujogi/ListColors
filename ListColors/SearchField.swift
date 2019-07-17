@@ -20,6 +20,7 @@ struct SearchField : View {
         HStack{
             Image(systemName: "magnifyingglass")
                 .padding(.leading)
+            
             TextField("Search ....", text: $searchText )
                 .textFieldStyle(.roundedBorder)
                 .padding(.leading)

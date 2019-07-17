@@ -1,10 +1,7 @@
-//
 //  RData.swift
 //  ListColors
-//
 //  Created by Nanu Jogi on 16/07/19.
 //  Copyright © 2019 Greenleaf Software. All rights reserved.
-//
 
 import Foundation
 import UIKit
@@ -20,10 +17,12 @@ class RData: BindableObject {
         didSet {
             DispatchQueue.main.async {
                 self.didChange.send() // this send() call will send values to subscribers.
+//            self.didChange.send(completion: .finished) // <<-- sends .finished when we its done.
             }
         }
+       
     }
-    
+
     func getData() {
         
         let first = Restaurant(name: "Joe's Original")
@@ -31,10 +30,10 @@ class RData: BindableObject {
         let third = Restaurant(name: "Original Joe's")
         let fourth = Restaurant(name: "NJ")
         
-        self.models.append(first)
-        self.models.append(second)
-        self.models.append(third)
-        self.models.append(fourth)
+        models.append(first)
+        models.append(second)
+        models.append(third)
+        models.append(fourth)
         
         searchName = models
     }
