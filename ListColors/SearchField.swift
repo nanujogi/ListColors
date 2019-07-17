@@ -11,7 +11,7 @@ import Combine
 
 struct SearchField : View {
     
-    @State var searchText: String = ""
+    @Binding var searchText: String
     
     var dismissButtonTitle = "Cancel"
     var dismissButtonCallback: (() -> Void)?
