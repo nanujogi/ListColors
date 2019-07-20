@@ -12,7 +12,7 @@ import Combine
 struct SearchField : View {
     
     @Binding var searchText: String
-    
+
     var dismissButtonTitle = "Cancel"
     var dismissButtonCallback: (() -> Void)?
     
@@ -31,7 +31,7 @@ struct SearchField : View {
                     self.searchText = ""
                     self.dismissButtonCallback?()
                 }, label: {
-                    Text("Cancel").color(.gray)
+                    Text("Cancel").foregroundColor(.gray)
                 }).animation(.basic())
             } 
             

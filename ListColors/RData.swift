@@ -9,18 +9,18 @@ import SwiftUI
 import Combine
 
 class RData: BindableObject {
-    
-    var didChange = PassthroughSubject<Void, Never>()
+
+    var willChange = PassthroughSubject<Void, Never>()
+
     var models:[Restaurant] = []
     
     var searchName = [Restaurant]()  {
         didSet {
             DispatchQueue.main.async {
-                self.didChange.send() // this send() call will send values to subscribers.
+                self.willChange.send() // this send() call will send values to subscribers.
 //            self.didChange.send(completion: .finished) // <<-- sends .finished when we its done.
             }
         }
-       
     }
 
     func getData() {
@@ -43,8 +43,10 @@ class RData: BindableObject {
             searchName = models
         } else {
             searchName = models.filter({ (value) -> Bool in
-                value.name.range(of: words, options: .caseInsensitive) != nil
+                return value.name.range(of: words, options: .caseInsensitive) != nil
             })
+            let aStr = searchName.compactMap{$0.name} // Array's of name String
+            print("💥 \(aStr)")
         }
     }
 }
