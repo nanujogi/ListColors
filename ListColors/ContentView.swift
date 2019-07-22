@@ -18,20 +18,12 @@ struct ContentView: View {
                     SearchField(searchText: $searchText)
                     ScrollView(.horizontal, showsIndicators: false ) {
                         HStack {
-                        ForEach(store.searchName) { data in
-                            Text(data.name)
-                                .listRowBackground(Color.pink)
+                            ForEach(store.searchName) { data in
+                                Text(data.name)
+                                    .listRowBackground(Color.pink)
+                            }
                         }
                     }
-                    }
-
-//                    List {
-//                        ForEach(store.searchName) { data in
-//                            Text(data.name)
-//                                .listRowBackground(Color.pink)
-//                        }
-//                    }
-//                    .background(Color.pink)
                 } // end of VStack
                     .navigationBarTitle(Text("Restaurants"))
                     .navigationBarItems(trailing: Button(action: searchName, label: { Text("Search") }))

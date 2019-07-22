@@ -32,7 +32,7 @@ struct SearchField : View {
                     self.dismissButtonCallback?()
                 }, label: {
                     Text("Cancel").foregroundColor(.gray)
-                }).animation(.basic())
+                }).animation(.default)
             } 
             
         }.padding(4) // end of HStack
