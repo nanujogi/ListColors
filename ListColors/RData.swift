@@ -13,14 +13,14 @@ import Combine
 
 class RData: BindableObject {
     
-    var didChange = PassthroughSubject<Void, Never>()
+    var willChange = PassthroughSubject<Void, Never>()
     
     var models:[Restaurant] = []
     
     var searchName = [Restaurant]()  {
         didSet {
             DispatchQueue.main.async {
-                self.didChange.send() // this send() call will send values to subscribers.
+                self.willChange.send() // this send() call will send values to subscribers.
             }
         }
     }
