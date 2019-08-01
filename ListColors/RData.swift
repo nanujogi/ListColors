@@ -8,16 +8,16 @@ import UIKit
 import SwiftUI
 import Combine
 
-class RData: BindableObject {
+class RData: ObservableObject {
 
-    var willChange = PassthroughSubject<Void, Never>()
+//    var willChange = PassthroughSubject<Void, Never>()
 
     var models:[Restaurant] = []
     
-    var searchName = [Restaurant]()  {
+    @Published var searchName = [Restaurant]()  {
         didSet {
             DispatchQueue.main.async {
-                self.willChange.send() // this send() call will send values to subscribers.
+//                self.willChange.send() // this send() call will send values to subscribers.
 //            self.didChange.send(completion: .finished) // <<-- sends .finished when we its done.
             }
         }

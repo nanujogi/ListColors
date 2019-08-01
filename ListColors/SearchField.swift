@@ -20,9 +20,9 @@ struct SearchField : View {
         HStack{
             Image(systemName: "magnifyingglass")
                 .padding(.leading)
-            
-            TextField("Search ....", text: $searchText )
-                .textFieldStyle(.roundedBorder)
+          
+                        TextField("Search ....", text: $searchText )
+                .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(.leading)
                 .padding(.trailing)
             
@@ -32,7 +32,7 @@ struct SearchField : View {
                     self.dismissButtonCallback?()
                 }, label: {
                     Text("Cancel").foregroundColor(.gray)
-                }).animation(.basic())
+                }).animation(.default)
             } 
             
         }.padding(4) // end of HStack

@@ -8,7 +8,7 @@ import Combine
 
 struct ContentView: View {
     
-    @ObjectBinding var store: RData
+    @ObservedObject var store: RData
     @State var searchText: String = ""
     
     var body: some View {
